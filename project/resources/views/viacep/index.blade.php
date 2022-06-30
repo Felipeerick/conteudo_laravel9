@@ -9,13 +9,12 @@
 
    <body>
       <div>
-        <form method='POST' action="{ {route('viacep.index.post') }}">
+        <form action="{{route('viacep.index.post')}}" method='post'>
         <!-- usa o csrf em todo formulario no laravel -->   
         @csrf
-
         <input type="text" name="cep">
         <button type="submit">Enviar</button>
-</form>
+      </form>
       </div>
    </body>
 </html>
