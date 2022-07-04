@@ -30,9 +30,12 @@ cria a 'fabrica dos semeadores';
 ------------------------------------------------------------------------------------------
 - php artisan make:model
 
-- cria o model;
+ cria o model;
 ------------------------------------------------------------------------------------------
 - php artisan make:seeder nomeDoSemeador
 
 cria o 'semeador', aquele que vai popular a tabela;
 ------------------------------------------------------------------------------------------
+- php artisan make:request nomeDoArquivo
+
+cria um arquivo de validação de formulário.
