@@ -2,10 +2,20 @@
 @section('title', 'Novo usuário')
 @section('body')
 
+<h1 style="margin: 30px">Novo Usuário</h1>
 
 <form style="margin: 30px" action="{{ route('users.store') }}" method='POST' >
  @csrf
-<h1>Novo Usuário</h1>
+ 
+@if($errors->any())
+   <div class='alert alert-danger' role='alert'>
+      @foreach($errors->all() as $error)
+          {{ $error }}<br>
+      @endforeach
+   </div>
+
+@endif
+
 <div class="form-group">
     <label for="name">Nome</label>
     <input type="name" class="form-control" id="name" name='name'>

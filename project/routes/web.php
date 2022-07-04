@@ -14,11 +14,19 @@ use App\Http\Controllers\{
 //Rotas dos usuários
 Route::get('/users/created', [UserController::class, 'created']) -> name('users.created');
 
-Route::post('/users/create',[UserController::class, 'store']) -> name('users.store');
+Route::post('/users/created',[UserController::class, 'store']) -> name('users.store');
 
 Route::get("/users", [UserController::class, 'index']) -> name('users.index');
 
+Route::get('/users/{id}/edit', [UserController::class, 'editUsers'])->name('users.edit');
+
+Route::delete('/users/{id}', [UserController::class, 'remove'])->name('users.delete');
+
+Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
+
 Route::get('/users/{id}', [UserController::class, 'idGet']) -> name('users.idGet');
+
+
 
 
 
