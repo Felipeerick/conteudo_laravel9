@@ -2,7 +2,7 @@
 
  - php artisan serve
 
- sobe o servidor;
+- sobe o servidor;
 ----------------------------
 - php artisan optimize
 
@@ -18,7 +18,7 @@
 ----------------------------------------
 - php artisan migrate
 
-sobe as migra��es criadas para o banco de dados previamente configurado no arquivo .env;
+- sobe as migra��es criadas para o banco de dados previamente configurado no arquivo .env;
 --------------------------------------------------------------------------------------------
 - php artisan db:seed
 
