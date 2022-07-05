@@ -36,3 +36,15 @@
 
 - cria o 'semeador', aquele que vai popular a tabela;
 ------------------------------------------------------------------------------------------
+- php artisa make:request nomeDoRequest
+
+- cria a pasta e o arquivo request
+-----------------------------------------------------------------------------------------
+- php artisan migrate:fresh
+
+- apaga e sobe todas as migrates
+-----------------------------------------------------------------------------------------------
+- php artisan migrate:rollback
+
+- dropa a migrate
+------------------------------------------------------------------------------------------------
