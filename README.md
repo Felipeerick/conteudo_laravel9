@@ -2,31 +2,31 @@
 
  - php artisan serve
 
- sobe o servidor;
+- sobe o servidor;
 ----------------------------
 - php artisan optimize
 
- limpa o cache do sistema;
+- limpa o cache do sistema;
 -----------------------------------
 - php artisan make:controller nomeDoController
 
-Cria o controller;
+- Cria o controller;
 -------------------------------------------
 - php artisan make:migration nomeDaMigra��o 
 
-cria uma migra��o;
+- cria uma migra��o;
 ----------------------------------------
 - php artisan migrate
 
-sobe as migra��es criadas para o banco de dados previamente configurado no arquivo .env;
+- sobe as migra��es criadas para o banco de dados previamente configurado no arquivo .env;
 --------------------------------------------------------------------------------------------
 - php artisan db:seed
 
-vai popular ou preencher as informa��es no banco de dados;
+- vai popular ou preencher as informa��es no banco de dados;
 ------------------------------------------------------------------------------------------
 - php artisan make:factory
 
-cria a 'fabrica dos semeadores';
+- cria a 'fabrica dos semeadores';
 ------------------------------------------------------------------------------------------
 - php artisan make:model
 
@@ -34,8 +34,29 @@ cria a 'fabrica dos semeadores';
 ------------------------------------------------------------------------------------------
 - php artisan make:seeder nomeDoSemeador
 
+<<<<<<< HEAD
 cria o 'semeador', aquele que vai popular a tabela;
 ------------------------------------------------------------------------------------------
 - php artisan make:request nomeDoArquivo
 
 cria um arquivo de validação de formulário.
+=======
+- cria o 'semeador', aquele que vai popular a tabela;
+------------------------------------------------------------------------------------------
+- php artisa make:request nomeDoRequest
+
+- cria a pasta e o arquivo request
+-----------------------------------------------------------------------------------------
+- php artisan migrate:fresh
+
+- apaga e sobe todas as migrates
+-----------------------------------------------------------------------------------------------
+- php artisan migrate:rollback
+
+- dropa a migrate
+------------------------------------------------------------------------------------------------
+- php artisan storage:link
+
+- gerar um link da pasta storage;
+------------------------------------------------------------------------------------------------
+>>>>>>> f689ac73a91751e9a6391356a2d53d4da58d961a
