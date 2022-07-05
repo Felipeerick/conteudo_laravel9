@@ -23,6 +23,7 @@ class storeUpdateUserRequest extends FormRequest
      */
     public function rules()
     {
+    /*     'mimes: jpeg, png, jpg' */
 
         $id  = $this -> id ?? '';
 
@@ -44,7 +45,12 @@ class storeUpdateUserRequest extends FormRequest
             'required',
             'min:3',
             'max:12'
-           ]
+           ],
+
+           'image' => [
+               'file',
+              
+           ],
        
         ];
 

@@ -2,6 +2,8 @@
 @section('title', $title)
 @section('body')
                 <h1>Listagem de {{$user -> name}} </h1>
+
+                
         <table class="table table-striped table-dark">
    <thead>
         <tr>

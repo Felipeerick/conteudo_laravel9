@@ -32,7 +32,7 @@ class UserController extends Controller
            return redirect()->route('users.index');
          }
       
-       $title = 'Usuário' . $user->name;
+       $title = 'Usuário ' . $user->name;
 
       return view('users.show', compact('user', 'title') );
   }
@@ -50,9 +50,15 @@ class UserController extends Controller
    $user->password = bcrypt($request->password);
    $user->save(); */
 
+   
+
    $data = $request->all();
    $data['password'] = bcrypt($request->password);
    
+   $file = $request['image'];
+    $path =  $file-> store('profile', 'public');
+   $data['image'] = $path;
+  
    $this->model ->create($data);
 
    return redirect()->route('users.index');

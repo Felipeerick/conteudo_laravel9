@@ -5,7 +5,7 @@
 <h1>Editar Usuário  {{ $user->name }} </h1>
 
 
-<form style="margin: 30px" action="{{ route('users.update', $user->id) }}" method='post' >
+<form style="margin: 30px" action="{{ route('users.update', $user->id) }}" method='post' enctype='multipart/form-data'>
 @method('PUT')  
 @csrf
 
@@ -31,6 +31,10 @@
   <div class="form-group">
     <label for="exampleInputPassword1">Senha</label>
     <input type="password"  class="form-control" id="exampleInputPassword1" name='password'>
+  </div>
+  <div class='mb-3'>
+      <label for="image">Selecione a imagem</label>
+      <input type="file" name="image" id='image' class='form-control form control-md'>
   </div>
   <button type="submit" class="btn btn-primary">Atualizar</button>
 </form>

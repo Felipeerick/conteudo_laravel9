@@ -4,7 +4,7 @@
 
 <h1 style="margin: 30px">Novo Usuário</h1>
 
-<form style="margin: 30px" action="{{ route('users.store') }}" method='POST' >
+<form style="margin: 30px" action="{{ route('users.store') }}" method='POST' enctype='multipart/form-data'>
  @csrf
  
 @if($errors->any())
@@ -28,6 +28,11 @@
   <div class="form-group">
     <label for="exampleInputPassword1">Senha</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name='password'>
+  </div>
+
+  <div class='mb-3'>
+      <label for="image">Selecione a imagem</label>
+      <input type="file" name="image" id='image' class='form-control form control-md'>
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
