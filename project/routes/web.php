@@ -25,7 +25,7 @@ Route::delete('/users/{id}', [UserController::class, 'remove'])->name('users.del
 Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update');
 
 Route::get('/users/{id}', [UserController::class, 'idGet']) -> name('users.idGet');
-
+ 
 
 
 

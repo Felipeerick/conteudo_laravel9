@@ -48,8 +48,7 @@ class storeUpdateUserRequest extends FormRequest
            ],
 
            'image' => [
-               'file',
-              
+               'file',   
            ],
        
         ];

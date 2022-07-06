@@ -10,14 +10,14 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
-  public function __construct(User $User){
+  public function __construct(User $user){
 
-    $this->model = $User;
+    $this->model = $user;
 
   }
   public function index()
   {
-    $users= User::all();
+    $users= User::paginate(5);
   
     //quando quiser passar alguma váriavel para a página, use o compact;
     return view('users.index', compact('users') );
@@ -51,15 +51,16 @@ class UserController extends Controller
    $user->save(); */
 
    
-
    $data = $request->all();
    $data['password'] = bcrypt($request->password);
    
-   $file = $request['image'];
-    $path =  $file-> store('profile', 'public');
-   $data['image'] = $path;
-  
-   $this->model ->create($data);
+    if($request->image){
+    $file = $request['image'];
+      $path = $file->store('profile', 'public');
+    $data['image'] = $path;
+    }
+
+   $this->model->create($data);
 
    return redirect()->route('users.index');
   }
@@ -69,6 +70,7 @@ class UserController extends Controller
     if(! $user = User::find($id)){
       return redirect()->route('users.index');
     }
+
 
       $title = 'Editar usuário ' . $user->name;
      return view('users.edit', compact('user', 'title'));
@@ -91,8 +93,16 @@ class UserController extends Controller
           };
 
          /* $data = $Request->only('name, email'); */
-         $data= $Request->all();
 
+         if($Request->image)
+         {
+          $file = $Request['image'];
+          $path = $file->store('profile', 'public');
+          $data['image'] = $path;
+          }
+
+         $data=$Request->all();
+           
          $user->update($data);
 
          return redirect()->route('users.index');

@@ -7,6 +7,7 @@
         <table class="table table-striped table-dark">
    <thead>
         <tr>
+           <th scope="col">Foto</th>
            <th scope="col">ID</th>
            <th scope="col">Nome</th>
            <th scope="col">Email</th>
@@ -19,6 +20,12 @@
   <tbody>
            
            <tr>
+               @if($user->image)
+               <td> <img src="{{ asset('storage/' . $user->image) }}" width="50px" height="50px" class='rounded-circle'> </td>
+               @else
+               <td> <img src="{{ asset('storage/profile/avatar.jpg') }}" width="50px" height="50px" class='rounded-circle'> </td>
+               @endif
+
               <th scope="row">{{ $user->id }}</th>
               <td>{{ $user->name }}</td>
               <td>{{ $user->email }}</td>
