@@ -15,7 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('CASCADE')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->text('post');
+            $table->string('title');
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }

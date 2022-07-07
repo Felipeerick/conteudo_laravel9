@@ -10,7 +10,7 @@
      <header class='mt-4'>
         <nav class='container'>
               <a class='btn btn-sucess' href="{{ route('users.index')}}">Listar Usuarios</a>
-              <a class='btn btn-alert' href="">Posts</a>
+              <a class='btn btn-alert' href="{{ route('posts.index') }}">Posts</a>
         </nav>
 
      </header>

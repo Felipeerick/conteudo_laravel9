@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\storeUpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 /* Obs: lembre de criar um request, pois eles ajudam na validação do formulário, caso não crie use Request nos parametros*/
 
@@ -18,7 +19,6 @@ class UserController extends Controller
   public function index()
   {
     $users= User::paginate(5);
-  
     //quando quiser passar alguma váriavel para a página, use o compact;
     return view('users.index', compact('users') );
 
@@ -44,21 +44,14 @@ class UserController extends Controller
 
   public function store(storeUpdateUserRequest $request)
   {
-   /* $user = new User();
-   $user->name = $request->name;
-   $user->email = $request->email;
-   $user->password = bcrypt($request->password);
-   $user->save(); */
-
-   
+  
    $data = $request->all();
    $data['password'] = bcrypt($request->password);
    
-    if($request->image){
-    $file = $request['image'];
-      $path = $file->store('profile', 'public');
-    $data['image'] = $path;
-    }
+    if($request->image)
+      {
+        $data['image'] = $request->image->store('profile', 'public');
+      }
 
    $this->model->create($data);
 
@@ -67,46 +60,40 @@ class UserController extends Controller
 
   public function editUsers($id)
   {
-    if(! $user = User::find($id)){
+    if(! $user = User::find($id))
+    {
       return redirect()->route('users.index');
     }
 
-
       $title = 'Editar usuário ' . $user->name;
+
      return view('users.edit', compact('user', 'title'));
   }
 
-  public function update(storeUpdateUserRequest $Request, $id)
-  {
-         //quando não se tem o request se passa no parametro Request e a váriavel
+    public function update(storeUpdateUserRequest $request, $id)
+    {
+        if (!$user = $this->model->find($id))
+            return redirect()->route('users.index');
 
-       if(! $user = User::find($id)){
+        $data = $request->all();
 
-              return redirect()->route('users.index');
+        if ($request->password)
+            $data['password'] = bcrypt($request->password);
 
-         };
- 
-          if($Request->password){
-
-            $data['password'] = bcrypt($Request->password);
-
-          };
-
-         /* $data = $Request->only('name, email'); */
-
-         if($Request->image)
+        if ($request->image)
          {
-          $file = $Request['image'];
-          $path = $file->store('profile', 'public');
-          $data['image'] = $path;
-          }
+            if ($user->image && Storage::exists($user->image))
+             {
+                Storage::delete($user->image);
+             }
 
-         $data=$Request->all();
-           
-         $user->update($data);
+            $data['image'] = $request->image->store('profile', 'public');
+         }
 
-         return redirect()->route('users.index');
-}
+        $user->update($data);
+
+        return redirect()->route('users.index');
+    }
              
   public function remove($id)
   {
