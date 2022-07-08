@@ -5,6 +5,7 @@ use App\Http\Requests\storeUpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Models\eam;
 
 /* Obs: lembre de criar um request, pois eles ajudam na validação do formulário, caso não crie use Request nos parametros*/
 
@@ -16,21 +17,25 @@ class UserController extends Controller
     $this->model = $user;
 
   }
-  public function index()
+  public function index(Request $request)
   {
-    $users= User::paginate(5);
-    //quando quiser passar alguma váriavel para a página, use o compact;
+    
+      $users = $this->model->getUsers(
+        $request->search ?? ''
+
+      );
+
     return view('users.index', compact('users') );
 
   }
 
   public function idGet($id){
     
-       /*$user = User::find($id); */
+       $user = User::find($id); 
 
-       if(! $user = User::find($id)){
-           return redirect()->route('users.index');
-         }
+       /*  $user = Team::find($id);
+         $user->load('team'); */
+
       
        $title = 'Usuário ' . $user->name;
 

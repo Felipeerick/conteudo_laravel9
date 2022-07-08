@@ -18,15 +18,23 @@ class PostController extends Controller
 
    }
 
-  /*  public function index($userid)
+   public function index()
    {
-    if($users = $this->user->find($userid)){
-       return redirect()->back();        
-    };
     
-    $post = $users->posts()->get();
+    $posts = Post::all();
 
-    return view('posts.index', compact('users', 'post'));
-   } */
+    return view('posts.index', compact('posts'));
+   }
+
+   public function show($UserId)
+   {
+      if(! $user = User::find($UserId)){
+      return redirect()->back();
+      }
+
+      $posts = $user->posts()->get();
+
+      return view('posts.show', compact('posts', 'user'));
+   }
 
 }

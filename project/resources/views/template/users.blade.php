@@ -8,10 +8,41 @@
     <title>@yield('title')</title>
 </head>
      <header class='mt-4'>
-        <nav class='container'>
+        <nav class='navbar navbar-expand-lg navbar navbar-dark bf-dark'>
+            <div class='container'>
               <a class='btn btn-sucess' href="{{ route('users.index')}}">Listar Usuarios</a>
               <a class='btn btn-alert' href="{{ route('posts.index') }}">Posts</a>
-        </nav>
+              </div>
+              <div class='col-2'>
+                  <ul class="navbar-nav mr-auto">
+                        @if(Auth::User())
+                        <li class='nav-item'>
+                            <a href="#" class="nav-link text-dark">Felipe</a>
+                        </li>
+                        <li class='nav-item'>
+                           <form method="POST" action="{{ route('logout') }}">
+                              @csrf
+
+                              <x-responsive-nav-link :href="route('logout')">
+                                    onclick="event.preventDefault();
+                                      this.closest('form').submit();">
+
+                                      {{ __('Sair') }}
+                              </x-responsive-nav-link>
+
+                           </form>
+                        </li>
+                        @else
+                        <li class='nav-item'>
+                            <a href="{{ route('login') }}" class="nav-link text-dark">Entrar</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href="{{ route('register') }}" class="nav-link text-dark">Cadastrar</a> 
+                        </li>
+                        @endif
+                  </ul>
+              </div>       
+            </nav>
 
      </header>
   <body>
