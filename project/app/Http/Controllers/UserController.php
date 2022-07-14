@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\eam;
+use App\Exceptions\UserException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /* Obs: lembre de criar um request, pois eles ajudam na validação do formulário, caso não crie use Request nos parametros*/
 
@@ -31,12 +33,10 @@ class UserController extends Controller
 
   public function idGet($id){
     
-       $user = User::find($id); 
-
-       /*  $user = Team::find($id);
-         $user->load('team'); */
-
-      
+       if($user = User::find($id)){
+         throw new NotFoundHttpException();
+       }; 
+       
        $title = 'Usuário ' . $user->name;
 
       return view('users.show', compact('user', 'title') );
@@ -60,7 +60,7 @@ class UserController extends Controller
 
    $this->model->create($data);
 
-   return redirect()->route('users.index');
+   return redirect()->route('users.index')->with('create', 'Usuário cadastrado com sucesso!');
   }
 
   public function editUsers($id)
@@ -76,28 +76,30 @@ class UserController extends Controller
   }
 
     public function update(storeUpdateUserRequest $request, $id)
-    {
-        if (!$user = $this->model->find($id))
-            return redirect()->route('users.index');
+      {
+          if (!$user = $this->model->find($id))
+              return redirect()->route('users.index');
 
-        $data = $request->all();
+                $data = $request->all();
 
-        if ($request->password)
-            $data['password'] = bcrypt($request->password);
+          if ($request->password)
+              $data['password'] = bcrypt($request->password);
 
-        if ($request->image)
-         {
-            if ($user->image && Storage::exists($user->image))
-             {
-                Storage::delete($user->image);
-             }
+          if ($request->image)
+          {
+                if ($user->image && Storage::exists($user->image))
+                {
+                    Storage::delete($user->image);
+                }
 
-            $data['image'] = $request->image->store('profile', 'public');
-         }
+                $data['image'] = $request->image->store('profile', 'public');
+          }
 
+        $data['is_admin'] = $request->admin?1:0;  
+      
         $user->update($data);
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('edit', 'Usuário editado com sucesso!');
     }
              
   public function remove($id)
@@ -110,7 +112,12 @@ class UserController extends Controller
      
     $user->delete();
 
-    return redirect()->route('users.index');
+    return redirect()->route('users.index')->with('remove', 'Usuário removido com sucesso!');
+  }
+
+  public function dash()
+  {
+    return view('dashboard');
   }
  
 }

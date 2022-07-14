@@ -5,6 +5,24 @@
                   <h1>Listagem de usuários </h1>
                   <a href="{{ route('users.created') }}" class="btn btn-warning mb-2 ">Adicionar Novo Usuário</a>
 
+                  @if(session()->has('remove'))
+                 <div type="button" class="btn btn-danger">{{ session()->get('remove') }}
+                  <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label='close'>X</button>
+                  </div>
+                  @endif
+
+                  @if(session()->has('create'))
+                  <div type="button" class="btn btn-success">{{ session()->get('create') }}
+                  <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label='close'>X</button>
+                  </div>
+                  @endif
+
+                  @if(session()->has('edit'))
+                  <div type="button" class="btn btn-success">{{ session()->get('edit') }}
+                  <button type="button" class='btn-close' data-bs-dismiss='alert' aria-label='close'>X</button>
+                  </div>
+                  @endif
+
                 <div class='container'>
                       <div class='row'>
                         <div class='col-sm mt-2 mb-3'>

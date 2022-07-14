@@ -17,21 +17,19 @@
                   <ul class="navbar-nav mr-auto">
                         @if(Auth::User())
                         <li class='nav-item'>
-                            <a href="#" class="nav-link text-dark">Felipe</a>
+                            <a href="#" class="nav-link text-dark">{{ Auth::User()->name }}</a>
                         </li>
+                             @if(Auth::user()->is_admin == 1)
+                             <li class='nav-item'>
+                               <a href="{{ route('dashboard')}}" class="nav-link text-dark">Dashboard</a>
+                             </li>
+                             @endif
                         <li class='nav-item'>
-                           <form method="POST" action="{{ route('logout') }}">
-                              @csrf
-
-                              <x-responsive-nav-link :href="route('logout')">
-                                    onclick="event.preventDefault();
-                                      this.closest('form').submit();">
-
-                                      {{ __('Sair') }}
-                              </x-responsive-nav-link>
-
-                           </form>
-                        </li>
+                             <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                          <button type="submit" class="text-white" >Sair</button>                         
+                                        </form>
+                         </li>
                         @else
                         <li class='nav-item'>
                             <a href="{{ route('login') }}" class="nav-link text-dark">Entrar</a>
@@ -49,5 +47,6 @@
         <div class="container">
         @yield('body')
       </div>
-</body>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>

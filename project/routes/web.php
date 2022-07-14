@@ -14,13 +14,15 @@ Route::get("/", function(){
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
 
+Route::middleware(['auth', 'admin'])->group(function ()
+{
+    Route::get('/dashboard',[UserController::class, 'dash'])->name('dashboard');
+});
 
 //Rota do middleware(Filtro do que pode passar)
 Route::middleware(['auth'])->group(function(){
+    
 
 //Rotas dos usuários
 Route::get("/users", [UserController::class, 'index']) -> name('users.index');

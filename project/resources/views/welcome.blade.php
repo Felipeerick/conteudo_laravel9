@@ -1,2 +1,2 @@
 @extends('template.users')
-@section('title', 'HOME')
+@section('title', 'home')
