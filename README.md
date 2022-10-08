@@ -59,4 +59,28 @@ cria um arquivo de validação de formulário.
 
 - gerar um link da pasta storage;
 ------------------------------------------------------------------------------------------------
->>>>>>> f689ac73a91751e9a6391356a2d53d4da58d961a
+- php artisan vendor:publish --tag=laravel-errors
+
+- Traz todas as views de erro para personalizar;
+------------------------------------------------------------------------------------------------
+- php artisan queue:table
+
+- Cria a tabela de jobs;
+------------------------------------------------------------------------------------------------
+- php artisan storage:link
+
+- cria o link da pasta storage
+------------------------------------------------------------------------------------------------
+- php artisan queue:work
+
+- coloca o jobs para trabalhar
+------------------------------------------------------------------------------------------------
+- php artisan make:mail NomeDoEmail
+
+- Cria uma pasta com um arquivo de envio de email dentro
+------------------------------------------------------------------------------------------------
+- php artisan make:component NomeDoComponente
+
+- Cria um componente no blade para reaproveitar
+------------------------------------------------------------------------------------------------
+
