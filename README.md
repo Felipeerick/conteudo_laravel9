@@ -28,20 +28,15 @@
 
 - cria a 'fabrica dos semeadores';
 ------------------------------------------------------------------------------------------
-- php artisan make:model
+- php artisan make:model namemodel
 
- cria o model;
-------------------------------------------------------------------------------------------
-- php artisan make:seeder nomeDoSemeador
-
-<<<<<<< HEAD
-cria o 'semeador', aquele que vai popular a tabela;
+- cria o model;
 ------------------------------------------------------------------------------------------
 - php artisan make:request nomeDoArquivo
 
-cria um arquivo de validação de formulário.
+- cria um arquivo de validação de formulário.
 ------------------------------------------------------------------------------------------------
-- php artisan make:seed NomeDoSeed
+- php artisan make:seeder NomeDoSeed
 
 - cria o 'semeador', aquele que vai popular a tabela;
 ------------------------------------------------------------------------------------------
@@ -85,4 +80,6 @@ cria um arquivo de validação de formulário.
 
 - Cria um componente no blade para reaproveitar
 ------------------------------------------------------------------------------------------------
+- php artisan make:model NameModel -mcr
 
+- cria um model, migrate, um controller com todos os metodos
