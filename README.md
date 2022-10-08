@@ -40,7 +40,9 @@ cria o 'semeador', aquele que vai popular a tabela;
 - php artisan make:request nomeDoArquivo
 
 cria um arquivo de validação de formulário.
-=======
+------------------------------------------------------------------------------------------------
+- php artisan make:seed NomeDoSeed
+
 - cria o 'semeador', aquele que vai popular a tabela;
 ------------------------------------------------------------------------------------------
 - php artisa make:request nomeDoRequest
